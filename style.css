@@ -1,0 +1,23 @@
+h1{
+    color: blue;
+    border: solid 2px blue;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    border-radius: 80px;
+}
+table, tr, th, td{
+    border: solid 1px black;
+}
+table{
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 25px;
+}
+th{
+    color: red;
+}
+form{
+    width: 50%;
+    margin: 0 auto;
+}

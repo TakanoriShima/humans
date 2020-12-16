@@ -1,0 +1,54 @@
+### データベース環境設定 -----
+
+# PHP 設定確認
+php --version
+# PHP 5.6.40 (cli) (built: Oct 31 2019 20:35:16) 
+
+# PDO 設定確認
+mysql --version
+#mysql  Ver 14.14 Distrib 5.5.62, for Linux (x86_64) using readline 5.1
+
+# 日本語設定
+sed -e "/utf8/d" -e "/client/d" -e "/^\[mysqld_safe\]$/i character-set-server=utf8\n\n[client]\ndefault-character-set=utf8" /etc/my.cnf |sudo tee /etc/my.cnf
+
+# PDO　インストールされているかの確認
+php -m | grep pdo
+# pdo_mysql
+# pdo_sqlite
+
+# pdo_mysql がない場合
+sudo yum -y install php71 php71-mbstring php71-pdo
+
+###  MySQL ----
+
+# MySQLサーバを起動
+sudo service mysqld start
+
+# MySQLにroot（管理者でログイン。パスワードなし）
+mysql -u root
+
+# データベース新規作成
+create database humans_sample character set utf8;
+
+# 使用するデータベースを選択
+use humans_sample;
+
+# テーブル作成
+create table humans(
+    id int primary key auto_increment, 
+    name varchar(50) not null,
+    age int not null,
+    created_at timestamp default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+# テーブルにデータを挿入（登録）
+insert into humans(name, age) values("馬場", 17);
+insert into humans(name, age) values("島", 48);
+insert into humans(name, age) values("山田", 30);
+
+
+# git 
+
+git init
+git add .
+git commit -m "任意のメッセージ"
